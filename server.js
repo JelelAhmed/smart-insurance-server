@@ -1,24 +1,33 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const path = require('path');
-// const knex = require('knex');
+import express from 'express';
+import cors from 'cors';
+import bcrypt from 'bcrypt';
+import bodyParser from 'body-parser'
+import knex from 'knex';
+import path from 'path';
 
-// const register = require('./controllers/register');
-// const signin = require('./controllers/signin');
+// import db from './database/database.js';
+
+import handleTransactionRef from './controllers/handleTransactionRef.js';// const signin = require('./controllers/signin');
+import handleRegister  from './controllers/register.js';
 
 
-// const db = knex({
-//     client: 'pg',    
-//     connection: {
-//     connectionString : process.env.DATABASE_URL,
-//     ssl: true,
-//   },
-// });
+const db = knex({
+	client: 'pg',    
+	connection: {
+		host : 'localhost',
+		user : 'postgres',
+		password: '1994',
+		database : 'si-server'
+	}
+});
 
 const app = express();
 
-app.use(bodyParser.json());
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 app.use(cors());
 
 // const argv = require('minimist')(process.argv.slice(2));
@@ -27,8 +36,11 @@ app.use(cors());
 
 app.get('/', (req, res) => { res.send('it is working')});
 // app.post('/signin', (req, res) => { signin.handleSignin(req,res, db, bcrypt)});
-// app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt) });
+app.post('/payments', (req, res) => {handleTransactionRef(req, res, db, bcrypt) });
+app.post('/registers',(req, res) => {handleRegister(req, res, db, bcrypt) });
 // app.get('/profile/:id', (req, res) => {profile.handleProfile(req, res, db)}); 
+
+
 
 
 
