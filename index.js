@@ -15,7 +15,7 @@ import handleSignin from './controllers/handleSignIn.js';
 const db = knex({
 	client: 'pg',    
 	connection: {
-	connectionString : 'postgres://postsmart_user:6qpCkrPgDGVwVPFoV2xjPSZvV7wE3cp9@dpg-cf3r70pa6gdmd1hfb370-a/postsmart',
+	connectionString : 'postgres://postsmart_user:6qpCkrPgDGVwVPFoV2xjPSZvV7wE3cp9@dpg-cf3r70pa6gdmd1hfb370-a.frankfurt-postgres.render.com/postsmart',
 	ssl: true,
 },
 });
