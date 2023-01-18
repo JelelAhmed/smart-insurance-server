@@ -36,7 +36,7 @@ const handleTransactionRef = async (req, res, db) => {
 						email: email,
 						created_on: new Date()
 					})
-					.into('payments')
+					.into('lists')
 					.returning('email')
 					.then(loginEmail => {
 						console.log(loginEmail);
@@ -44,8 +44,7 @@ const handleTransactionRef = async (req, res, db) => {
 						 .returning('*')
 						 .insert({
 								email: email,
-								user_name: user_name,
-								// joined: new Date()
+								// user_name: user_name,
 							})
 							.then(login => {
 							  return login;

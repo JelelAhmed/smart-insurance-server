@@ -9,8 +9,9 @@ const handleSignin = (req, res, db) => {
     .where('email', '=', email)
     .then(data => {
       const isValid = true;
+			console.log(email);
       if (isValid) {
-       return db.select('*').from('payments')
+       return db.select('*').from('lists')
           .where('email', '=', email)
           .then(user => {
             res.json(user)
